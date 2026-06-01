@@ -8,6 +8,8 @@
     ],
     "license": "MIT",
     "require": {
+        "ext-pdo_sqlite": "*",
+        "ext-sqlite3": "*",
         "php": "^8.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^11.0",
