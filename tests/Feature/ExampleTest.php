@@ -16,8 +16,54 @@ class ExampleTest extends TestCase
 
         $response
             ->assertStatus(200)
-            ->assertSee('Welcome to your client operations portal')
-            ->assertSee('Sign in');
+            ->assertSeeText("The risks you'll actually face don't show up in compliance checklists.", false)
+            ->assertSeeText('Whose risk are you trying to understand?', false)
+            ->assertSeeText('Sign in', false);
+    }
+
+    public function testRanulphEnquiryCanBeSubmitted()
+    {
+        $response = $this->post(route('ranulph.enquiry'), [
+            'name' => 'Jonathan Bowker',
+            'email' => 'jonathan@example.com',
+            'organisation' => 'Advanced Analytica',
+            'role' => 'Direct investor',
+            'preferred_next_step' => 'Book a scoping call',
+            'message' => 'We need a deeper integrity read.',
+            'branch' => 'other',
+            'leaf' => 'deal_deep_dive',
+            'freebie_requested' => 'Risk Assessment and Action Plan template plus redacted deal example.',
+            'time_sensitive' => 'yes',
+            'confidentiality_consent' => 'yes',
+        ]);
+
+        $response
+            ->assertRedirect(url('/').'#contact')
+            ->assertSessionHas('ranulph_status');
+    }
+
+    public function testLocalSearchReturnsRelevantResults()
+    {
+        $response = $this->get(route('search', ['q' => 'fraud']));
+
+        $response
+            ->assertOk()
+            ->assertSeeText('Find what you need', false)
+            ->assertSeeText('Fraud Controls Diagnostic', false)
+            ->assertSeeText('2 results', false);
+    }
+
+    public function testMarketingPagesLoad()
+    {
+        $this->get(route('use-cases'))->assertOk()->assertSeeText('Use Cases', false);
+        $this->get(route('opinions'))->assertOk()->assertSeeText('Opinions', false);
+        $this->get(route('resources'))->assertOk()->assertSeeText('Resources', false);
+        $this->get(route('about'))->assertOk()->assertSeeText('AI governance you can operate', false);
+        $this->get(route('contact'))->assertOk()->assertSeeText('Contact', false);
+        $this->get(route('security'))->assertOk()->assertSeeText('Security', false);
+        $this->get(route('privacy'))->assertOk()->assertSeeText('Privacy', false);
+        $this->get(route('terms'))->assertOk()->assertSeeText('Terms', false);
+        $this->get(route('rss-feeds'))->assertOk()->assertSeeText('RSS Feeds', false);
     }
 
     public function testPortalRoutesRequireAuthentication()

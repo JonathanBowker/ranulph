@@ -5,13 +5,6 @@
 @section('content')
     <section class="hero-panel">
         <div>
-            <div class="aa-motif">
-                <div class="aa-motif__item"><x-application-logo /></div>
-                <div class="aa-motif__item aa-motif__item--center"><x-application-logo /></div>
-                <div class="aa-motif__item"><x-application-logo /></div>
-                <div class="aa-motif__item"><x-application-logo /></div>
-                <div class="aa-motif__item"><x-application-logo /></div>
-            </div>
             <p class="eyebrow">Operations Hub</p>
             <h1>Give clients a controlled self-service surface instead of another support inbox.</h1>
             <p class="hero-copy">

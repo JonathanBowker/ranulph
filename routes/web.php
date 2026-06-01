@@ -1,13 +1,25 @@
 <?php
 
+use App\Http\Controllers\MarketingPageController;
+use App\Http\Controllers\RanulphLandingController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PortalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [RanulphLandingController::class, 'show'])->name('home');
+Route::get('/search', SearchController::class)->name('search');
+Route::get('/use-cases', [MarketingPageController::class, 'useCases'])->name('use-cases');
+Route::get('/opinions', [MarketingPageController::class, 'opinions'])->name('opinions');
+Route::get('/resources', [MarketingPageController::class, 'resources'])->name('resources');
+Route::get('/company/about', [MarketingPageController::class, 'about'])->name('about');
+Route::get('/security', [MarketingPageController::class, 'simple'])->defaults('page', 'security')->name('security');
+Route::get('/company/contact', [MarketingPageController::class, 'simple'])->defaults('page', 'contact')->name('contact');
+Route::get('/rss-feeds', [MarketingPageController::class, 'simple'])->defaults('page', 'rss-feeds')->name('rss-feeds');
+Route::get('/privacy', [MarketingPageController::class, 'simple'])->defaults('page', 'privacy')->name('privacy');
+Route::get('/terms', [MarketingPageController::class, 'simple'])->defaults('page', 'terms')->name('terms');
+Route::post('/ranulph/enquiry', [RanulphLandingController::class, 'store'])->name('ranulph.enquiry');
 
 Route::middleware(['auth', 'active_user'])->group(function () {
     Route::get('/dashboard', [PortalController::class, 'overview'])->name('dashboard');

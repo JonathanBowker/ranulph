@@ -3,7 +3,7 @@
 @section('title', 'Profile')
 
 @section('content')
-    <section class="section-block">
+    <section class="portal-hero-section">
         <div class="section-heading">
             <div>
                 <p class="eyebrow">Account</p>
