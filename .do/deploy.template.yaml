@@ -31,5 +31,5 @@ spec:
     - key: DB_DATABASE
       value: /tmp/database.sqlite
     name: web
-    run_command: mkdir -p /tmp/laravel-sessions && if [ ! -f /tmp/database.sqlite ]; then cp database/database.sqlite /tmp/database.sqlite; fi && php artisan migrate --force && heroku-php-apache2 public/
+    run_command: mkdir -p /tmp/laravel-sessions && touch /tmp/database.sqlite && php artisan migrate --force --seed && heroku-php-apache2 public/
     source_dir: /

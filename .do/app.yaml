@@ -7,7 +7,7 @@ services:
     deploy_on_push: false
     repo: JonathanBowker/ranulph
   build_command: composer install --no-interaction --prefer-dist --optimize-autoloader && npm ci && npm run build
-  run_command: mkdir -p /tmp/laravel-sessions && if [ ! -f /tmp/database.sqlite ]; then cp database/database.sqlite /tmp/database.sqlite; fi && php artisan migrate --force && heroku-php-apache2 public/
+  run_command: mkdir -p /tmp/laravel-sessions && touch /tmp/database.sqlite && php artisan migrate --force --seed && heroku-php-apache2 public/
   envs:
   - key: APP_ENV
     value: production
