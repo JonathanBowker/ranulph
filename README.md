@@ -4,6 +4,20 @@ We provide a sample app using Laravel that you can deploy on App Platform. These
 
 **Note: Following these steps may result in charges for the use of DigitalOcean services.**
 
+## GitHub Actions Deploy
+
+This repository includes a GitHub Actions workflow at `.github/workflows/deploy-digitalocean.yml` that deploys the app to DigitalOcean App Platform on every push to `main`.
+
+Before it can work, add these repository secrets in GitHub:
+
+* `DIGITALOCEAN_ACCESS_TOKEN`: a DigitalOcean personal access token with App Platform write access.
+* `DO_APP_KEY`: the Laravel `APP_KEY` value you want App Platform to use at runtime.
+
+The workflow deploys from [`.do/app.yaml`](/Users/jonathanbowker/Projects/internal/prod/sites/ranulph/.do/app.yaml), which is configured to use the `JonathanBowker/ranulph` GitHub repository and disables App Platform's own `deploy_on_push` behavior so GitHub Actions remains the single deployment trigger.
+The workflow deploys from `.do/app.yaml`, which is configured to use the `JonathanBowker/ranulph` GitHub repository and disables App Platform's own `deploy_on_push` behavior so GitHub Actions remains the single deployment trigger.
+
+Before the first workflow run, make sure App Platform has already been authorized to access your GitHub account by creating an app once through the DigitalOcean control panel or API.
+
 ### Requirements
 
 * You need a DigitalOcean account. If you don't already have one, you can sign up at https://cloud.digitalocean.com/registrations/new.

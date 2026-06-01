@@ -2,13 +2,22 @@ spec:
   name: sample-laravel
   services:
   - environment_slug: php
-    git:
+    github:
       branch: main
-      repo_clone_url: https://github.com/digitalocean/sample-laravel.git
+      deploy_on_push: false
+      repo: JonathanBowker/ranulph
     instance_count: 1
     instance_size_slug: apps-s-1vcpu-1gb
+    build_command: composer install --no-interaction --prefer-dist --optimize-autoloader && npm ci && npm run build
     envs:
+    - key: APP_ENV
+      value: production
+    - key: APP_DEBUG
+      value: "false"
     - key: APP_KEY
-      value: "base64:UdAH2B63rlotjrkSSsj3Hppy4gbfr+OeHvtSdF9r9q8="
-    name: sample-laravel
+      scope: RUN_TIME
+      type: SECRET
+      value: ${APP_KEY}
+    name: web
     run_command: heroku-php-apache2 public/
+    source_dir: /
