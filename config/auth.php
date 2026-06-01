@@ -68,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [
@@ -113,5 +113,10 @@ return [
     */
 
     'password_timeout' => 10800,
+
+    'super_admin_emails' => array_filter(array_map(
+        static fn (string $email) => trim($email),
+        explode(',', (string) env('SUPER_ADMIN_EMAILS', ''))
+    )),
 
 ];

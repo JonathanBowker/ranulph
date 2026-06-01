@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'linkedin-openid' => [
+        'client_id' => env('LINKEDIN_OPENID_CLIENT_ID'),
+        'client_secret' => env('LINKEDIN_OPENID_CLIENT_SECRET'),
+        'redirect' => env('LINKEDIN_OPENID_REDIRECT', '/auth/linkedin/callback'),
+    ],
+
 ];
