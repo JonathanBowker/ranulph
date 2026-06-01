@@ -156,7 +156,7 @@
                     <div class="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-white/58">
                         Ranulph
                     </div>
-                    <h1 class="mx-auto mt-6 max-w-[64rem] font-['Archivo','Segoe_UI',sans-serif] text-[clamp(3rem,8vw,6.25rem)] font-semibold leading-[0.97] tracking-tight text-white">
+                    <h1 class="mx-auto mt-6 max-w-[54rem] font-['Archivo','Segoe_UI',sans-serif] text-[clamp(3rem,8vw,6.25rem)] font-semibold leading-[0.97] tracking-tight text-white">
                         The risks you'll actually face don't show up in compliance checklists.
                     </h1>
                     <p class="mx-auto mt-8 max-w-[48rem] text-[clamp(1.05rem,2.2vw,1.55rem)] leading-relaxed text-white/74">
