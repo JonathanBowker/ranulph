@@ -23,6 +23,12 @@ class DatabaseSeeder extends Seeder
                 'is_super_admin' => false,
                 'email_verified_at' => null,
             ],
+            [
+                'name' => 'Rupert Evil',
+                'email' => 'rupert@ethicsinsight.co',
+                'is_super_admin' => true,
+                'email_verified_at' => now(),
+            ],
         ];
 
         foreach ($users as $attributes) {
