@@ -20,7 +20,7 @@
 
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button type="submit" class="marketing-primary-button px-3 py-2 text-xs">Log out</button>
+                            <button type="submit" class="portal-logout-button px-3 py-2 text-xs">Log out</button>
                         </form>
                     </div>
 
@@ -44,7 +44,7 @@
 
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="marketing-primary-button px-4 py-2 text-sm">Log out</button>
+                                <button type="submit" class="portal-logout-button px-4 py-2 text-sm">Log out</button>
                             </form>
                         </div>
                     </div>

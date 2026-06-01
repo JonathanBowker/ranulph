@@ -7,7 +7,7 @@ services:
     deploy_on_push: false
     repo: JonathanBowker/ranulph
   build_command: composer install --no-interaction --prefer-dist --optimize-autoloader && npm ci && npm run build
-  run_command: heroku-php-apache2 public/
+  run_command: mkdir -p /tmp/laravel-sessions && touch /tmp/database.sqlite && php artisan migrate --force && heroku-php-apache2 public/
   envs:
   - key: APP_ENV
     value: production
@@ -20,8 +20,14 @@ services:
     type: SECRET
     value: ${APP_KEY}
   - key: SESSION_DRIVER
-    value: cookie
+    value: file
+  - key: SESSION_FILES
+    value: /tmp/laravel-sessions
   - key: SESSION_SECURE_COOKIE
     value: "true"
+  - key: DB_CONNECTION
+    value: sqlite
+  - key: DB_DATABASE
+    value: /tmp/database.sqlite
   http_port: 8080
   source_dir: /
