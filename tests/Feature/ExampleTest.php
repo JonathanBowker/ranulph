@@ -57,6 +57,7 @@ class ExampleTest extends TestCase
     {
         $this->get(route('use-cases'))->assertOk()->assertSeeText('Use Cases', false);
         $this->get(route('opinions'))->assertOk()->assertSeeText('Opinions', false);
+        $this->get(route('opinions.show', 'what-is-brando'))->assertOk()->assertSeeText('What is Brando?', false);
         $this->get(route('resources'))->assertOk()->assertSeeText('Resources', false);
         $this->get(route('about'))->assertOk()->assertSeeText('AI governance you can operate', false);
         $this->get(route('contact'))->assertOk()->assertSeeText('Contact', false);

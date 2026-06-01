@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Support\MarketingContent;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class MarketingPageController extends Controller
 {
@@ -23,14 +24,38 @@ class MarketingPageController extends Controller
 
     public function opinions(): View
     {
+        $items = collect(MarketingContent::opinions())
+            ->map(fn (array $item) => [
+                ...$item,
+                'url' => route('opinions.show', $item['slug']),
+            ])
+            ->all();
+
         return view('marketing.list-page', [
             'pageTitle' => 'Opinions',
             'metaTitle' => 'Opinions | Ranulph',
             'kicker' => 'Opinions',
             'intro' => 'Working views on brand governance, machine-readable policy, controlled AI, and the operating patterns behind deployable assurance.',
-            'items' => MarketingContent::opinions(),
+            'items' => $items,
             'rssLabel' => 'Opinions RSS',
             'showRss' => true,
+        ]);
+    }
+
+    public function showOpinion(string $slug): View
+    {
+        $article = MarketingContent::opinion($slug);
+
+        if (! $article) {
+            throw new NotFoundHttpException();
+        }
+
+        return view('marketing.article-page', [
+            'metaTitle' => $article['title'].' | Ranulph',
+            'kicker' => $article['series'],
+            'article' => $article,
+            'backLabel' => 'Back to Opinions',
+            'backUrl' => route('opinions'),
         ]);
     }
 

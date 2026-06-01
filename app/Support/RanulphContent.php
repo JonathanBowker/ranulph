@@ -332,7 +332,7 @@ final class RanulphContent
             $items[] = [
                 'title' => $item['title'],
                 'description' => $item['summary'],
-                'url' => route('opinions'),
+                'url' => route('opinions.show', $item['slug']),
                 'keywords' => $item['tags'],
                 'section' => 'Opinions',
                 'type' => 'Opinion',

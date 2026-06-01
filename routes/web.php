@@ -12,6 +12,7 @@ Route::get('/', [RanulphLandingController::class, 'show'])->name('home');
 Route::get('/search', SearchController::class)->name('search');
 Route::get('/use-cases', [MarketingPageController::class, 'useCases'])->name('use-cases');
 Route::get('/opinions', [MarketingPageController::class, 'opinions'])->name('opinions');
+Route::get('/opinions/{slug}', [MarketingPageController::class, 'showOpinion'])->name('opinions.show');
 Route::get('/resources', [MarketingPageController::class, 'resources'])->name('resources');
 Route::get('/company/about', [MarketingPageController::class, 'about'])->name('about');
 Route::get('/security', [MarketingPageController::class, 'simple'])->defaults('page', 'security')->name('security');

@@ -30,7 +30,11 @@
                     <article class="rounded-[2rem] border border-[#e4e9f0] bg-white p-6 shadow-[0_10px_30px_rgba(15,23,36,0.04)]">
                         <div class="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#14B8A6]">{{ $item['series'] }}</div>
                         <h2 class="mt-4 font-['Archivo','Segoe_UI',sans-serif] text-3xl font-semibold leading-tight tracking-tight text-[#101827]">
-                            {{ $item['title'] }}
+                            @if (!empty($item['url']))
+                                <a href="{{ $item['url'] }}" class="transition-colors hover:text-[#0f766e]">{{ $item['title'] }}</a>
+                            @else
+                                {{ $item['title'] }}
+                            @endif
                         </h2>
                         <p class="mt-4 text-base leading-relaxed text-[#475569]">
                             {{ $item['summary'] }}
@@ -42,6 +46,13 @@
                                 </span>
                             @endforeach
                         </div>
+                        @if (!empty($item['url']))
+                            <div class="mt-6">
+                                <a href="{{ $item['url'] }}" class="inline-flex items-center text-sm font-semibold text-[#0f766e] transition-colors hover:text-[#0b5f59]">
+                                    Read more
+                                </a>
+                            </div>
+                        @endif
                     </article>
                 @endforeach
             </div>

@@ -13,9 +13,15 @@ services:
     value: production
   - key: APP_DEBUG
     value: "false"
+  - key: APP_URL
+    value: https://sample-laravel-h4bwp.ondigitalocean.app
   - key: APP_KEY
     scope: RUN_TIME
     type: SECRET
     value: ${APP_KEY}
+  - key: SESSION_DRIVER
+    value: cookie
+  - key: SESSION_SECURE_COOKIE
+    value: "true"
   http_port: 8080
   source_dir: /
